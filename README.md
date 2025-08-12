@@ -3,6 +3,8 @@ The MECE (Mutually Exclusive, Collectively Exhaustive) framework forces clarity:
 
 A practical prompt + schema to create **Mutually Exclusive, Collectively Exhaustive** frameworks for any topic.
 
+Custom GPT Available Here: https://chatgpt.com/g/g-689b34fefa3481919acd1bf821f92b6a-m-e-c-e-gpt
+
 ## Why
 Most frameworks fail due to **overlap** (duplicated buckets) or **gaps** (missing areas). This builder enforces scope, distinctness, and coverage.
 
