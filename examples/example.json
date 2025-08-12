@@ -1,0 +1,26 @@
+{
+  "topic": "Data Team Operating Model",
+  "audience": "Heads of Data",
+  "scope": "Central data team; excludes vendor management.",
+  "categories": [
+    {
+      "name": "Strategy",
+      "definition": "Team aims and rationale.",
+      "subcategories": [
+        { "name": "Roadmapping", "purpose": "Prioritise initiatives." },
+        { "name": "Stakeholder Alignment", "purpose": "Agree goals with partners." }
+      ]
+    }
+  ],
+  "distinctness_notes": [
+    { "vs": ["Strategy", "Delivery"], "reason": "Strategy chooses goals; Delivery executes work." }
+  ],
+  "coverage_checklist": [
+    { "aspect": "Prioritisation", "category": "Strategy" }
+  ],
+  "edge_cases": ["Planning rituals that blur into delivery"],
+  "mece_confirmation": {
+    "mutually_exclusive_because": "Unique category names; pairwise checks applied.",
+    "collectively_exhaustive_because": "Checklist maps each scoped aspect to exactly one category."
+  }
+}
