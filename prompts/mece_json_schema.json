@@ -1,81 +1,135 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "MECEFramework",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentnaeem.github.io/mece-framework.schema.json",
+  "title": "MECE Framework Output",
   "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "topic",
+    "audience",
+    "scope",
+    "categories",
+    "distinctness_notes",
+    "coverage_checklist",
+    "edge_cases",
+    "mece_confirmation"
+  ],
   "properties": {
-    "topic": { "type": "string" },
-    "audience": { "type": "string" },
-    "scope": { "type": "string" },
-    "depth": { "type": "integer", "enum": [1, 2, 3] },
-    "depth_label": { "type": "string", "enum": ["light", "standard", "deep"] },
+    "topic": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "audience": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "scope": { "type": "string", "minLength": 1 },
     "categories": {
       "type": "array",
-      "minItems": 3,
+      "minItems": 1,
+      "maxItems": 8,
       "items": {
         "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "definition", "subcategories"],
         "properties": {
-          "name": { "type": "string" },
-          "definition": { "type": "string" },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "definition": {
+            "type": "string",
+            "minLength": 1
+          },
           "subcategories": {
             "type": "array",
-            "minItems": 2,
+            "minItems": 1,
+            "maxItems": 5,
             "items": {
               "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "purpose"],
               "properties": {
-                "name": { "type": "string" },
-                "purpose": { "type": "string" }
-              },
-              "required": ["name", "purpose"]
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 60
+                },
+                "purpose": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
             }
           }
-        },
-        "required": ["name", "definition", "subcategories"]
+        }
       }
     },
     "distinctness_notes": {
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
+        "required": ["vs", "reason"],
         "properties": {
           "vs": {
             "type": "array",
-            "items": { "type": "string" },
+            "items": { "type": "string", "minLength": 1, "maxLength": 40 },
             "minItems": 2,
             "maxItems": 2
           },
-          "reason": { "type": "string" }
-        },
-        "required": ["vs", "reason"]
+          "reason": { "type": "string", "minLength": 1 }
+        }
       }
     },
     "coverage_checklist": {
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
+        "required": ["aspect", "category"],
         "properties": {
-          "aspect": { "type": "string" },
-          "category": { "type": "string" }
-        },
-        "required": ["aspect", "category"]
+          "aspect": { "type": "string", "minLength": 1 },
+          "category": { "type": "string", "minLength": 1, "maxLength": 40 }
+        }
       }
     },
-    "edge_cases": { "type": "array", "items": { "type": "string" } },
+    "edge_cases": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
     "mece_confirmation": {
       "type": "object",
+      "additionalProperties": false,
+      "required": ["mutually_exclusive_because", "collectively_exhaustive_because"],
       "properties": {
-        "mutually_exclusive_because": { "type": "string" },
-        "collectively_exhaustive_because": { "type": "string" }
-      },
-      "required": ["mutually_exclusive_because", "collectively_exhaustive_because"]
-    },
-    "stats": {
-      "type": "object",
-      "description": "Optional quick QA signals",
-      "properties": {
-        "overlap_issues_found": { "type": "integer", "minimum": 0 },
-        "coverage_gaps_found": { "type": "integer", "minimum": 0 }
+        "mutually_exclusive_because": { "type": "string", "minLength": 1 },
+        "collectively_exhaustive_because": { "type": "string", "minLength": 1 }
       }
     }
   },
-  "required": ["topic", "categories", "mece_confirmation"]
+  "examples": [
+    {
+      "topic": "B2B SaaS Pricing Strategy",
+      "audience": "Founders and RevOps",
+      "scope": "Net-new pricing design for a self-serve + sales-assist motion in the US/EU.",
+      "categories": [
+        {
+          "name": "Segmentation",
+          "definition": "How we partition customers for pricing decisions.",
+          "subcategories": [
+            { "name": "Firmographics", "purpose": "Company size, industry, region." },
+            { "name": "Use Intensity", "purpose": "Seats, usage drivers, limits." },
+            { "name": "Willingness to Pay", "purpose": "Elasticity and value metrics." }
+          ]
+        }
+      ],
+      "distinctness_notes": [
+        { "vs": ["Segmentation", "Packaging"], "reason": "Segmentation chooses who differs; Packaging chooses what they get." }
+      ],
+      "coverage_checklist": [
+        { "aspect": "Seat limits", "category": "Packaging" }
+      ],
+      "edge_cases": ["Usage add-ons that look like packages"],
+      "mece_confirmation": {
+        "mutually_exclusive_because": "Each aspect maps to a single category with no synonyms.",
+        "collectively_exhaustive_because": "Checklist covers all scoped aspects; missing items would trigger an explicit gap."
+      }
+    }
+  ]
 }
