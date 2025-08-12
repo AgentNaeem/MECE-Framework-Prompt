@@ -1,0 +1,74 @@
+{
+  "topic": "AI in Marketing",
+  "audience": "VP Marketing (mid-market SaaS)",
+  "scope": "Acquisition, retention, analytics and ops. Excludes core product R&D.",
+  "depth": 2,
+  "depth_label": "standard",
+  "categories": [
+    {
+      "name": "Strategy & Use-Case Selection",
+      "definition": "Decide where AI creates net value within marketing.",
+      "subcategories": [
+        { "name": "Opportunity Sizing", "purpose": "Estimate impact and effort of candidate use-cases." },
+        { "name": "Risk & Compliance", "purpose": "Check GDPR, consent, model governance." },
+        { "name": "Pilot Design", "purpose": "Define MVP scope, metrics and success thresholds." }
+      ]
+    },
+    {
+      "name": "Acquisition & Growth",
+      "definition": "Drive qualified demand using AI-augmented channels.",
+      "subcategories": [
+        { "name": "Predictive Targeting", "purpose": "Propensity modelling for paid and email." },
+        { "name": "Content Automation", "purpose": "Brief-to-draft workflows for ads, blogs and assets." },
+        { "name": "SEO Automation", "purpose": "Entity mapping, internal linking, technical checks." }
+      ]
+    },
+    {
+      "name": "Retention & Lifecycle",
+      "definition": "Increase LTV via personalisation and automation.",
+      "subcategories": [
+        { "name": "Next-Best-Action", "purpose": "Trigger offers and nudges per user state." },
+        { "name": "Churn Prediction", "purpose": "Flag at-risk accounts for save plays." },
+        { "name": "Support Automation", "purpose": "Agent deflection and assist." }
+      ]
+    },
+    {
+      "name": "Data & Measurement",
+      "definition": "Collect, model and attribute outcomes safely.",
+      "subcategories": [
+        { "name": "Data Pipelines", "purpose": "CDP/warehouse readiness and tracking." },
+        { "name": "Attribution & MMM", "purpose": "Unified view for budget decisions." },
+        { "name": "Experimentation", "purpose": "A/B and causal testing guardrails." }
+      ]
+    },
+    {
+      "name": "Operations & Governance",
+      "definition": "Scale AI responsibly and efficiently.",
+      "subcategories": [
+        { "name": "Workflow Design", "purpose": "Templates, approvals and SLAs." },
+        { "name": "Model Ops", "purpose": "Evaluation, cost control and fallback plans." },
+        { "name": "Security & Privacy", "purpose": "PII handling, consent logs, vendor checks." }
+      ]
+    }
+  ],
+  "distinctness_notes": [
+    { "vs": ["Acquisition & Growth", "Retention & Lifecycle"], "reason": "Distinct lifecycle objectives and KPIs (new pipeline vs LTV)." },
+    { "vs": ["Data & Measurement", "Operations & Governance"], "reason": "Data=truth/attribution; Ops=process/risk/control." }
+  ],
+  "coverage_checklist": [
+    { "aspect": "Paid media efficiency", "category": "Acquisition & Growth" },
+    { "aspect": "Personalised onboarding", "category": "Retention & Lifecycle" },
+    { "aspect": "Attribution accuracy", "category": "Data & Measurement" },
+    { "aspect": "Approval workflows", "category": "Operations & Governance" },
+    { "aspect": "Use-case ROI", "category": "Strategy & Use-Case Selection" }
+  ],
+  "edge_cases": [
+    "Content Automation could sit under Ops; kept under Acquisition for demand impact.",
+    "Support Automation overlaps CS; kept in Retention due to LTV linkage."
+  ],
+  "mece_confirmation": {
+    "mutually_exclusive_because": "Each category maps to a distinct mission with unique KPIs and owners.",
+    "collectively_exhaustive_because": "Together they cover selection, execution across lifecycle, measurement and scale/control."
+  },
+  "stats": { "overlap_issues_found": 0, "coverage_gaps_found": 0 }
+}
